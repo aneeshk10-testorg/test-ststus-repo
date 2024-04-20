@@ -31,5 +31,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "CATM_V${{env.MAJOR_VERSION}}_${{env.MINOR_VERSION}}_${{env.RELEASE_VERSION}}_${{env.COMMIT_DATE}}_${{env.COMMIT_ID}}_TEST
-          path: "./"
+          name: "CATM_V${{env.MAJOR_VERSION}}_${{env.MINOR_VERSION}}_${{env.RELEASE_VERSION}}_${{env.COMMIT_DATE}}_${{env.COMMIT_ID}}_TEST"
+          path: "./test"
