@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch
+
+env:
+  MAJOR_VERSION: 10
+  MINOR_VERSION: 0
+  RELEASE_VERSION: 3
+  COMMIT_DATE: $(echo (date +'%Y%m%d') | cut -c 3-8)
+  COMMIT_ID: $(echo ${{github.sha}} | cut -c 1-8)
+  
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run a one-line script
+        run: |
+          $NEW_VERSION4 = "${{env.MAJOR_VERSION]].${{env.MINOR_VERSION}}.${{env.RELEASE_VERSION}}.0"
+          $NEW_VERSION5 = "${{env.MAJOR_VERSION}}.${{env.MINOR_VERSION}}.${{env.RELEASE_VERSION}}.${{env.COMMIT_DATE}}.${{env.COMMIT_ID}}"
+          echo $NEW_VERSION4
+          echo $NEW_VERSION5
+
+      # Runs a set of commands using the runners shell
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: "CATM_V${{env.MAJOR_VERSION}}_${{env.MINOR_VERSION}}_${{env.RELEASE_VERSION}}_${{env.COMMIT_DATE}}_${{env.COMMIT_ID}}_TEST
+          path: "./"
